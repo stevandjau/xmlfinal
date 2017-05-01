@@ -1,9 +1,21 @@
+body {
+	font-family: 'Rambla', sans-serif;
+	font-size: 14px;
+	line-height: 1.6em;
+	color: #1d1e1e;
+}
+
+body a {
+	color: #f0a30d;
+}
+
 #carousel-result {
 	height:650px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 0% 30%;
 	color: #FFF;
+	background-image: url(img/main.jpg);
 }
 
 #carousel-detail {
@@ -12,11 +24,46 @@
 
 #carousel-more {
 	margin-top: 40px;
-	outline: 2px #FFF solid;
 }
 
 .main-button {
 	height: 130px;
 	background-position: center;
 	background-size: cover;
+}
+
+.more-button {
+	line-height: 2em;
+}
+
+.more-button:hover, .main-button:hover {
+	cursor: pointer;
+}
+
+.mov-detail {
+	padding: 5px;
+}
+
+#detail-result, #review-result {
+	margin-top: 60px;
+}
+
+footer {
+	text-align: center;
+	background-color: #1d1e1e;
+	color:#FFF;
+	line-height: 2em;
+	padding: 20px;
+	margin-top: 50px;
+}
+
+
+@media screen and (max-width: 800px) {
+    #carousel-result {
+    	background-position: center;
+    }
+
+    #carousel-detail {
+		margin-top: 290px;
+	}
 }

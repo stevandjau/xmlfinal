@@ -19,6 +19,12 @@ $(document).ready(function() {
 	//event listener for movie detail
 	$('#carousel-more').on('click','.more-button',function() {
 		displayDetail (this.id);
+		//scroll with animation to the description
+
+		$('html, body').animate({
+		    scrollTop: $("#detail-result").offset().top
+		}, 1000);
+
 	});
 
 
@@ -36,6 +42,7 @@ $(document).ready(function() {
 			}, function(data) {
 				//display detail
 				$("#detail-result").html('');
+				$('#review-result').html('');
 				$("#detail-result").append(
 					"<div><h3>"+data.original_title+"</h3><p><i>"+data.tagline+"</i></p><p>Release date:"+data.release_date+"</p><p>Story Summary: "+data.overview+"</p><p>Website: <a href=\""+data.homepage+"\">"+data.homepage+"</a></p></div>"
 				);
@@ -60,13 +67,15 @@ $(document).ready(function() {
 				//set movie title and description
 				$('#carousel-detail').html('');
 				$('#carousel-detail').append(
-					"<h2>"+data.original_title+"</h2>"+
+					"<h1>"+data.original_title+"</h1>"+
 					"<p>"+data.overview+"</p>"
 				);
 				//create a detail button
 				$("#carousel-more").html(
-					"<div id="+data.imdb_id+" class=\"more-button\">Detail</div>"
+					"<div id="+data.imdb_id+" class=\"more-button\" alt=\"show detail\"><span>Detail</span></div>"
 				);
+				$("#carousel-more").css('outline', '2px #FFF solid');
+				$("#carousel-more").css('background', '#f0a30d');
 			}
 		);
 	}
@@ -74,7 +83,7 @@ $(document).ready(function() {
 	function getMovDetailButton (movid, movicon) {
 		
 		$("#button-result").append(
-			"<div id=\""+movid+"\" class=\"col-md-3 main-button\"></div>"
+			"<div id=\""+movid+"\" class=\"col-md-3 main-button\" alt=\"movie button\"></div>"
 		);
 		$("#"+movid).css('background-image', 'url('+movicon+')');
 	}
@@ -91,11 +100,11 @@ $(document).ready(function() {
 			  url: url,
 			  method: 'GET',
 			}).done(function(result) {
-				$('#detail-result').append("<h3>Reviews</h3>");
+				$('#review-result').append("<h3>Reviews</h3>");
 				console.log(result.results);
 				$.each(result.results, function (index, value) {
 					console.log(value);
-					$('#detail-result').append(
+					$('#review-result').append(
 						"<div><p><b><a href=\""+value.link.url+"\">"+value.headline+"</a></b></p><p>"+value.summary_short+"</p><p>"+value.byline+", "+value.publication_date+"</p></div>"
 					);
 				})
